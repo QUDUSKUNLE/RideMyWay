@@ -7,6 +7,12 @@ name = "pypi"
 "flake8" = "*"
 "pep8" = "*"
 pycodestyle = "*"
+django = "*"
+djangorestframework = "*"
+pygments = "*"
+"psycopg2" = "*"
+numpy = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 
