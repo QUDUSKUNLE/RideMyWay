@@ -8,7 +8,8 @@ install:
   - pipenv install
 # command to run tests
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - cd server
+  - python3 manage.py test tests -v 2 # or py.test for Python versions 3.5 and below
 
 notifications:
     slack: andela:CZMPqh8lpJiFzgTKBVdzOREr

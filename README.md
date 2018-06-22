@@ -2,5 +2,14 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3ba64d233c6778af040d/test_coverage)](https://codeclimate.com/github/QUDUSKUNLE/RideMyWay/test_coverage)
 
 
-## RideMyWay
-```Ride-my App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.```
+### RideMyWay
+**Ride-my App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.**
+
+
+### Run Test
+**Navigate to the server directory and run**
+```python3 manage.py test tests -v 2```
+
+### Coverage
+**Navigate to the server directory and run**
+```coverage report```
