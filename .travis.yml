@@ -16,7 +16,6 @@ before_script:
 script:
   - cd server
   - python3 manage.py test tests -v 2
-  - coverage report
 
 notifications:
     slack: andela:CZMPqh8lpJiFzgTKBVdzOREr
