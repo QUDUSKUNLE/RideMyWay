@@ -14,7 +14,9 @@ before_script:
 
 # command to run tests
 script:
-  - sh run_test.sh
+  - cd server
+  - python3 manage.py test tests -v 2
+  - coverage report
 
 notifications:
     slack: andela:CZMPqh8lpJiFzgTKBVdzOREr
