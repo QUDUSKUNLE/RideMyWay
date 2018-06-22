@@ -9,13 +9,11 @@ install:
   - pipenv install
 
 before_script:
-  - psql -c 'create database ridemyway;' -U postgres
   - cd server
 
 # command to run tests
 script:
   - python3 manage.py test tests -v 2
-  - coverage report
 
 notifications:
     slack: andela:CZMPqh8lpJiFzgTKBVdzOREr
