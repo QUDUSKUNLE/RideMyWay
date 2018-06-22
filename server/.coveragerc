@@ -1,0 +1,9 @@
+[report]
+omit = 
+    */migrations/*
+    */site-packages/*
+    .virtualenvs/*
+    */manage.py
+    */tests/*
+    */static/*
+show_missing = True

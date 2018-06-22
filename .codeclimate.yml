@@ -1,4 +1,4 @@
 version: "2"
 plugins:
-    pep8:
+    flake8:
         enabled: true

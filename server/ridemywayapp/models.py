@@ -1,4 +1,4 @@
-from utils import PushID
+from utils.unique_id import PushID
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -6,11 +6,14 @@ from django.contrib.auth.models import User
 
 class Rides(models.Model):
     ride_id = models.CharField(
-        max_length=255, primary_key=True, blank=True, null=False)
+        max_length=255, primary_key=True,
+        blank=True, null=False, editable=False)
     pick_up = models.TextField(max_length=255, )
     take_off_time = models.DateTimeField()
     destination = models.TextField()
-    rider = models.ForeignKey(User, related_name='rides', on_delete=models.CASCADE)
+    rider = models.ForeignKey(
+        User, related_name='rides',
+        on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     modified = models.DateTimeField(auto_now_add=True)
 
