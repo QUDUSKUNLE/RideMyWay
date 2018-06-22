@@ -8,8 +8,4 @@
 
 ### Run Test
 **Navigate to the server directory and run**
-```python3 manage.py test tests -v 2```
-
-### Coverage
-**Navigate to the server directory and run**
-```coverage report```
+```sh run_test.sh```

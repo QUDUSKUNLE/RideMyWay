@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 from ridemywayapp.models import Rides
-from utils.unique_id import PushID
 
 
 class RidesModelTestCase(TestCase):
