@@ -8,13 +8,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
-            'url', 'username',
+            'id', 'username',
             'email', 'is_staff', 'groups',)
 
 
 class RidesSerializer(serializers.HyperlinkedModelSerializer):
+    user_id = serializers.ReadOnlyField(source='user.id')
     class Meta:
         model = Rides
         fields = (
             'pick_up', 'take_off_time',
-            'destination', 'rider', 'ride_id',)
+            'destination', 'user_id', 'ride_id',)

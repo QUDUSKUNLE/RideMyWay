@@ -13,3 +13,6 @@ class UserViewSet(viewsets.ModelViewSet):
 class RidesViewSet(viewsets.ModelViewSet):
     serializer_class = RidesSerializer
     queryset = Rides.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

@@ -11,7 +11,7 @@ class Rides(models.Model):
     pick_up = models.TextField(max_length=255, )
     take_off_time = models.DateTimeField()
     destination = models.TextField()
-    rider = models.ForeignKey(
+    user = models.ForeignKey(
         User, related_name='rides',
         on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
