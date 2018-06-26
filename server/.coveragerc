@@ -8,4 +8,5 @@ omit =
     */tests/*
     */static/*
     */ridemyway/*
+    /home/travis/virtualenv/python3.6.3/lib/python3.6/distutils/__init__.py
 show_missing = True
