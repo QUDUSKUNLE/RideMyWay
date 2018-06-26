@@ -1,5 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3ba64d233c6778af040d/maintainability)](https://codeclimate.com/github/QUDUSKUNLE/RideMyWay/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/3ba64d233c6778af040d/test_coverage)](https://codeclimate.com/github/QUDUSKUNLE/RideMyWay/test_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/QUDUSKUNLE/RideMyWay/badge.svg?branch=develop)](https://coveralls.io/github/QUDUSKUNLE/RideMyWay?branch=develop)
 [![Build Status](https://travis-ci.com/QUDUSKUNLE/RideMyWay.svg?branch=develop)](https://travis-ci.com/QUDUSKUNLE/RideMyWay)
 
 
