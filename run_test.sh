@@ -3,7 +3,8 @@
 
 echo "****************************** Running test ***********************************************"
 cd server
-python3 manage.py test tests -v 2
+coverage run manage.py test tests -v 2
 coverage report
+coverage html
 
 echo "****************************** Running test finished **************************************"

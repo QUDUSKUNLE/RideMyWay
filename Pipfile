@@ -17,6 +17,7 @@ coverage = "*"
 coveralls = "*"
 python-dotenv = "*"
 django-rest-registration = "*"
+pytest = "*"
 
 [dev-packages]
 
