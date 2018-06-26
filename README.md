@@ -6,7 +6,8 @@
 ### RideMyWay
 Ride-my App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.
 
+## Start App
+run  ```'sh start_app.sh '```
 
 ### Run Test
-Navigate to the server directory and run
-```'sh run_test.sh'```
+run  ```'sh run_test.sh'```
