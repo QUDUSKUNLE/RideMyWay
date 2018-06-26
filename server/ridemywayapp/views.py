@@ -11,7 +11,8 @@ from .models import OfferRides, RequestRides
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,
+                        permissions.IsAdminUser,)
 
 
 class OfferRidesViewSet(viewsets.ModelViewSet):
