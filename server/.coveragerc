@@ -3,6 +3,7 @@ omit =
     */migrations/*
     */site-packages/*
     */.virtualenvs/*
+    */virtualenvs/*
     */manage.py
     */tests/*
     */static/*
