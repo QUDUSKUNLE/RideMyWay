@@ -15,7 +15,7 @@ before_script:
 script:
   - coverage run manage.py test tests -v 2
   - coverage report
-  - coverage html
+  - coveralls
 
 notifications:
     slack: andela:CZMPqh8lpJiFzgTKBVdzOREr

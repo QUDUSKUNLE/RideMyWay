@@ -18,6 +18,7 @@ coveralls = "*"
 python-dotenv = "*"
 django-rest-registration = "*"
 pytest = "*"
+pyyaml = "*"
 
 [dev-packages]
 
