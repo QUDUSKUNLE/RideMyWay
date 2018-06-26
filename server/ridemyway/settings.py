@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'utils',
     'coverage',
     'rest_registration',
-    'rest_framework_api_key',
 ]
 
 MIDDLEWARE = [
