@@ -2,10 +2,10 @@ from django.test import TestCase
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from ridemywayapp.models import Rides
+from ridemywayapp.models import OfferRides, RequestRides
 
 
-class RidesModelTestCase(TestCase):
+class OfferRidesModelTestCase(TestCase):
 
     def create_user(self):
         self.name = 'kunle',
@@ -16,19 +16,57 @@ class RidesModelTestCase(TestCase):
                     password=self.password,
                     email=self.email)
 
-    def create_rides(self):
+    def create_offer_rides(self):
         self.pick_up = '235, Epic Tower, Ikorodu road, Lagos'
         self.take_off_time = '2015-01-05T22:08:37.838Z'
         self.destination = 'Berger'
-        self.rider = self.create_user()
+        self.offer = self.create_user()
         self.created = timezone.now()
-        return Rides.objects.create(
+        return OfferRides.objects.create(
                         pick_up=self.pick_up,
                         take_off_time=self.take_off_time,
                         destination=self.destination,
-                        rider=self.rider,
+                        user=self.offer,
                         created=self.created)
 
-    def test_rides_creation(self):
-        w = self.create_rides()
-        self.assertTrue(isinstance(w, Rides))
+    def test_offer_rides_creation(self):
+        w = self.create_offer_rides()
+        self.assertTrue(isinstance(w, OfferRides))
+
+
+class RequestRidesTestCase(TestCase):
+
+    def create_user(self):
+        self.name = 'kola',
+        self.password = 'kola08971',
+        self.email = 'kola@gmail.com'
+        return User.objects.create(
+                    username=self.name,
+                    password=self.password,
+                    email=self.email)
+
+    def create_offer_rides(self):
+        self.pick_up = '235, Epic Tower, Ikorodu road, Lagos'
+        self.take_off_time = '2015-01-05T22:08:37.838Z'
+        self.destination = 'Berger'
+        self.offer = self.create_user()
+        self.created = timezone.now()
+        return OfferRides.objects.create(
+                    pick_up=self.pick_up,
+                    take_off_time=self.take_off_time,
+                    destination=self.destination,
+                    user=self.offer,
+                    created=self.created)
+    
+    def create_request_ride(self):
+        self.user = User.objects.create(
+            username='Benin', password='benin08971', email='email@yahoo.com')
+        self.offer = self.create_offer_rides()
+        return RequestRides.objects.create(
+                    user=self.user,
+                    offer=self.offer)
+
+    def test_request_ride(self):
+        self.request_ride = self.create_request_ride()
+        self.assertTrue(isinstance(self.request_ride, RequestRides))
+        

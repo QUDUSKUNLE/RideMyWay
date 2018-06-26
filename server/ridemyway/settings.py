@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'ridemywayapp',
     'utils',
-    'coverage'
+    'coverage',
+    'rest_registration',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ridemyway.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
+
 
 TEMPLATES = [
     {
@@ -128,3 +135,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_URL': 'https://frontend-url/verify-user/',
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://frontend-url/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_URL': 'https://frontend-url/verify-email/',
+
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+}

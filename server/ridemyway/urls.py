@@ -20,6 +20,7 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/', include('rest_registration.api.urls')),
     url(r'^', include('ridemywayapp.urls')),
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
