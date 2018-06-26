@@ -4,8 +4,9 @@ from ridemywayapp import views
 
 router = DefaultRouter()
 
-router.register(r'api/rides', views.RidesViewSet)
 router.register(r'api/users', views.UserViewSet)
+router.register(r'api/offer-rides', views.OfferRidesViewSet)
+router.register(r'api/request-rides', views.RequestRidesViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls))

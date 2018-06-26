@@ -2,8 +2,9 @@
 omit = 
     */migrations/*
     */site-packages/*
-    .virtualenvs/*
+    */.virtualenvs/*
     */manage.py
     */tests/*
     */static/*
+    */ridemyway/*
 show_missing = True

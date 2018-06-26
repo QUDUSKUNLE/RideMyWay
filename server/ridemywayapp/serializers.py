@@ -1,21 +1,26 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
-from ridemywayapp.models import Rides
+from ridemywayapp.models import OfferRides, RequestRides
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id', 'username',
-            'email', 'is_staff', 'groups',)
+            'id', 'username', 'url', 'password',)
 
 
-class RidesSerializer(serializers.HyperlinkedModelSerializer):
-    user_id = serializers.ReadOnlyField(source='user.id')
+class OfferRidesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Rides
+        model = OfferRides
         fields = (
             'pick_up', 'take_off_time',
-            'destination', 'user_id', 'ride_id',)
+            'destination', 'offer_id', 'created', 'user',)
+
+
+class RequestRidesSerializer(serializers.HyperlinkedModelSerializer):
+    user_id = serializers.ReadOnlyField(source='user.id')
+
+    class Meta:
+        model = RequestRides
+        fields = ('request_id', 'user_id', 'offer', 'created',)
