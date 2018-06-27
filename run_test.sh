@@ -5,6 +5,7 @@ echo "****************************** Running test ******************************
 cd server
 coverage run manage.py test tests -v 2
 coverage report
+coverage html
 coveralls
 
 echo "****************************** Running test finished **************************************"

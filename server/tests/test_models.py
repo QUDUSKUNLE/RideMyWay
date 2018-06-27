@@ -26,12 +26,13 @@ class OfferRidesModelTestCase(TestCase):
                         pick_up=self.pick_up,
                         take_off_time=self.take_off_time,
                         destination=self.destination,
-                        user=self.offer,
+                        owner=self.offer,
                         created=self.created)
 
     def test_offer_rides_creation(self):
         w = self.create_offer_rides()
         self.assertTrue(isinstance(w, OfferRides))
+        self.assertEqual(w.pick_up, '235, Epic Tower, Ikorodu road, Lagos')
 
 
 class RequestRidesTestCase(TestCase):
@@ -55,7 +56,7 @@ class RequestRidesTestCase(TestCase):
                     pick_up=self.pick_up,
                     take_off_time=self.take_off_time,
                     destination=self.destination,
-                    user=self.offer,
+                    owner=self.offer,
                     created=self.created)
     
     def create_request_ride(self):
@@ -63,8 +64,8 @@ class RequestRidesTestCase(TestCase):
             username='Benin', password='benin08971', email='email@yahoo.com')
         self.offer = self.create_offer_rides()
         return RequestRides.objects.create(
-                    user=self.user,
-                    offer=self.offer)
+                    owner=self.user,
+                    offerrides=self.offer)
 
     def test_request_ride(self):
         self.request_ride = self.create_request_ride()

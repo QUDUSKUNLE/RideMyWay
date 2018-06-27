@@ -39,11 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+
     'ridemywayapp',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
     'utils',
     'coverage',
-    'rest_registration',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +152,6 @@ REST_REGISTRATION = {
 
     'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
 }
+
+SITE_ID = 1
+REST_USE_JWT = True
