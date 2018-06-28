@@ -1,9 +1,6 @@
-// file: src/actions/index.js
-import * as actionType from './types';
 
-export const setToken = (data) => {
-    return {
-        type: actionType.SET_TOKEN,
-        data
-    }
-}
+import AppConstants from '../constants/AppConstants';
+
+const setToken = data => ({ type: AppConstants.SET_TOKEN, data });
+
+export default setToken;

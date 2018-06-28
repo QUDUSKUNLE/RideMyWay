@@ -1,23 +1,29 @@
-// file: src/reducers/index.js
-import { combineReducers } from 'redux';
-import * as actionType from '../actions/types';
 
-const tokenInitialState = null;
-const token = (state = tokenInitialState, action) => {
-    switch (action.type) {
-        case actionType.SET_TOKEN:
-            return action.data;
-        default:
-            return state;
-    }
-}
+import AppConstants from '../constants/AppConstants';
+import initialState from '../app/initialState';
 
-const appReducer = combineReducers({
-    token,
-})
+export const token = (state = initialState.tokenInitialState, action) => {
+  switch (action.type) {
+    case AppConstants.SET_TOKEN:
+      return action.data;
 
-const rootReducer = (state, action) => {
-    return appReducer(state, action);
-}
+    case AppConstants.SET_TOKEN_ERROR:
+      return action.data;
 
-export default rootReducer;
+    default:
+      return state;
+  }
+};
+
+export const signup = (state = initialState.register, action) => {
+  switch (action.type) {
+    case AppConstants.SIGNUP_SUCCESS:
+      return action.data;
+
+    case AppConstants.SIGNUP_ERROR:
+      return action.data;
+
+    default:
+      return state;
+  }
+};

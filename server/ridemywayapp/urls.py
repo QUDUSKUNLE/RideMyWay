@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from rest_framework.authtoken import views as drf_views
 from ridemywayapp import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
@@ -20,9 +19,6 @@ urlpatterns = [
         views.OfferRidesDetail.as_view(), name='offer-rides-detail'),
     url(r'^api/request-rides/(?P<pk>[0-9]+)/$',
         views.RequestRidesDetails.as_view(), name='request-rides-detail'),
-
-    url(r'^auth/$',
-        drf_views.obtain_auth_token, name='auth')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
