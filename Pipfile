@@ -18,10 +18,10 @@ coveralls = "*"
 python-dotenv = "*"
 django-rest-registration = "*"
 pytest = "*"
-pyyaml = "*"
 djangorestframework-jwt = "*"
 django-allauth = "*"
 django-rest-auth = "*"
+pyyaml = "==3.12"
 
 [dev-packages]
 
