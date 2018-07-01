@@ -9,7 +9,6 @@ from .serializers import (
     UserSerializer,
     RequestRidesSerializer,)
 from .models import OfferRides, RequestRides
-from .permissions import IsOwnerOrReadOnly
 
 
 @api_view(['GET'])
@@ -38,18 +37,13 @@ class UserDetail(generics.RetrieveAPIView):
 class OfferRidesList(generics.ListCreateAPIView):
     serializer_class = OfferRidesSerializer
     queryset = OfferRides.objects.all()
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class OfferRidesDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OfferRidesSerializer
     queryset = OfferRides.objects.all()
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class RequestRidesList(generics.ListCreateAPIView):
@@ -57,12 +51,9 @@ class RequestRidesList(generics.ListCreateAPIView):
     queryset = RequestRides.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
 
 class RequestRidesDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RequestRidesSerializer
     queryset = RequestRides.objects.all()
     permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+        permissions.IsAuthenticatedOrReadOnly,)

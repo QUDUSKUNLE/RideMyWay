@@ -8,7 +8,7 @@ export const token = (state = initialState.tokenInitialState, action) => {
       return action.data;
 
     case AppConstants.SET_TOKEN_ERROR:
-      return action.data;
+      return null;
 
     default:
       return state;
