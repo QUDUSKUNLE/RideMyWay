@@ -5,6 +5,11 @@ import setToken from '../actions/index';
 import { URL, LOGIN } from '../config/Api';
 import AppConstants from '../constants/AppConstants';
 
+export const InvalidCredentialsException = (message) => {
+  this.message = message;
+  this.name = 'InvalidCredentialsException';
+};
+
 
 export const login = (username, password) => (
   axios

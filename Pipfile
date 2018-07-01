@@ -22,6 +22,7 @@ djangorestframework-jwt = "*"
 django-allauth = "*"
 django-rest-auth = "*"
 pyyaml = "==3.12"
+django-cors-headers = "*"
 
 [dev-packages]
 

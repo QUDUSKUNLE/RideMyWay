@@ -14,17 +14,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class OfferRidesSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.id')
-
     class Meta:
         model = OfferRides
         fields = (
-            'pick_up', 'take_off_time',
-            'destination', 'offer_id', 'created', 'owner',)
+            'id', 'pick_up', 'take_off_time',
+            'destination', 'created', 'owner', 'available_space')
 
 
 class RequestRidesSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.id')
     pick_up = serializers.ReadOnlyField(
         source='offerrides.pick_up')
     destination = serializers.ReadOnlyField(
@@ -35,5 +32,5 @@ class RequestRidesSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestRides
         fields = (
-            'request_id', 'owner', 'created',
+            'id', 'owner', 'created',
             'offerrides', 'pick_up', 'destination', 'take_off_time',)
