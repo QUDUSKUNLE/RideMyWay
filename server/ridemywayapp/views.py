@@ -24,35 +24,65 @@ def api_root(request, format=None):
 
 
 class UserList(generics.ListAPIView):
+
+    """
+        Class UserList serializer
+    """
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
 
 class UserDetail(generics.RetrieveAPIView):
+
+    """
+        Class UserDetail serializer
+    """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class OfferRidesList(generics.ListCreateAPIView):
+
+    """
+        Class OfferRidesList serializer
+    """
+
     serializer_class = OfferRidesSerializer
     queryset = OfferRides.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class OfferRidesDetail(generics.RetrieveUpdateDestroyAPIView):
+
+    """
+        Class OfferRidesDetail serializer
+    """
+
     serializer_class = OfferRidesSerializer
     queryset = OfferRides.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class RequestRidesList(generics.ListCreateAPIView):
+
+    """
+        Class OfferRidesDetail serializer
+    """
+
     serializer_class = RequestRidesSerializer
     queryset = RequestRides.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
 
 
 class RequestRidesDetails(generics.RetrieveUpdateDestroyAPIView):
+
+    """
+        Class OfferRidesDetail serializer
+    """
+
     serializer_class = RequestRidesSerializer
     queryset = RequestRides.objects.all()
     permission_classes = (
