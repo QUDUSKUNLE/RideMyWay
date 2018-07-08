@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
 
 
 urlpatterns = [
     url(r'^', include('ridemywayapp.urls')),
     path('admin/', admin.site.urls),
     url(r'^rest-auth/', include('rest_auth.urls')),
-    # url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]

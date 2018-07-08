@@ -23,6 +23,10 @@ django-allauth = "*"
 django-rest-auth = "*"
 pyyaml = "==3.12"
 django-cors-headers = "*"
+graphene = "==2.0.1"
+graphene-django = "==2.0.0"
+django-filter = "==1.1.0"
+django-graphql-jwt = "==0.1.5"
 
 [dev-packages]
 

@@ -2,6 +2,12 @@ from django.db import models
 
 
 class OfferRides(models.Model):
+    
+    """
+        Class OfferRides Models
+    """
+    __tablename__ = 'Offerrides'
+
     pick_up = models.TextField(max_length=255, )
     take_off_time = models.DateTimeField()
     destination = models.TextField()
@@ -19,6 +25,12 @@ class OfferRides(models.Model):
 
 
 class RequestRides(models.Model):
+    
+    """
+        Class RequestRides Models
+    """
+    __tablename__ = 'RequestRides'
+
     owner = models.ForeignKey(
         'auth.User', related_name='request_rides',
         on_delete=models.CASCADE)

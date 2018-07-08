@@ -4,6 +4,11 @@ from ridemywayapp.models import OfferRides, RequestRides
 
 
 class UserSerializer(serializers.ModelSerializer):
+    
+    """
+        Class UserSerializer serializer
+    """
+
     offer_rides = serializers.PrimaryKeyRelatedField(
         many=True, queryset=OfferRides.objects.all())
 
@@ -14,6 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class OfferRidesSerializer(serializers.ModelSerializer):
+    
+    """
+        Class OfferRidesSerializer serializer
+    """
     class Meta:
         model = OfferRides
         fields = (
@@ -22,6 +31,11 @@ class OfferRidesSerializer(serializers.ModelSerializer):
 
 
 class RequestRidesSerializer(serializers.ModelSerializer):
+
+    """
+        Class RequestRidesSerializer serializer
+    """
+
     pick_up = serializers.ReadOnlyField(
         source='offerrides.pick_up')
     destination = serializers.ReadOnlyField(
