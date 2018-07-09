@@ -15,7 +15,7 @@ class UserType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    
+
     """
         Class Query to query all manner of users
     """
@@ -27,7 +27,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
         if not user.is_superuser:
             raise Exception('Authentication credentials were not provided')
-    
+
         return get_user_model().objects.all()
 
     def resolve_me(self, info):
@@ -46,7 +46,6 @@ class CreateUser(graphene.Mutation):
 
     user = graphene.Field(UserType)
 
-
     class Arguments:
 
         """
@@ -62,7 +61,8 @@ class CreateUser(graphene.Mutation):
         if check_email:
             return Exception('User already exist')
 
-        check_username = get_user_model().objects.filter(username=username).first()
+        check_username = get_user_model().objects.filter(
+            username=username).first()
         if check_username:
             return Exception('Username already exist')
 
@@ -75,8 +75,9 @@ class CreateUser(graphene.Mutation):
 
         return CreateUser(user=user)
 
+
 class Mutation(graphene.ObjectType):
-    
+
     """
         Class Mutation to alter, create a new instance of user
     """
