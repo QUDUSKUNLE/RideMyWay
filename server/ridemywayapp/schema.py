@@ -15,15 +15,12 @@ class RequestRidesType(DjangoObjectType):
         model = RequestRides
 
 
-
-
 class Query(graphene.ObjectType):
     offerme = graphene.List(OfferRidesType)
     offerrides = graphene.List(OfferRidesType)
 
     requestrideme = graphene.Field(RequestRidesType)
     requestrides = graphene.List(RequestRidesType)
-
 
     def resolve_offerme(self, info):
         user = info.context.user
@@ -35,8 +32,6 @@ class Query(graphene.ObjectType):
     def resolve_offerrides(self, info, **kwargs):
         return OfferRides.objects.all()
 
-
-    
     def resolve_requestrideme(self, info):
         user = info.context.user
         if user.is_authenticated:
@@ -44,7 +39,6 @@ class Query(graphene.ObjectType):
         
         return Exception('Authentication credentials were not provided')
 
-    
     def resolve_requestrides(self, info, **kwargs):
         return RequestRides.objects.all()
 
@@ -55,14 +49,12 @@ class CreateOfferRides(graphene.Mutation):
     destination = graphene.String()
     available_space = graphene.Int()
 
-
     class Arguments:
         pick_up = graphene.String(required=True)
         take_off_time = graphene.types.datetime.DateTime()
         destination = graphene.String()
         available_space = graphene.Int()
 
-    
     def mutate(self, info, pick_up, take_off_time, destination, available_space):
         user = info.context.user
         if user.is_authenticated:
@@ -92,12 +84,12 @@ class CreateOfferRides(graphene.Mutation):
         return Exception('Authentication credentials were not provided')
 
 
-
 class CreateRequestRides(graphene.Mutation):
     id = graphene.Int()
     offer_id = graphene.Int(required=True)
     pick_up = graphene.String()
     offer_requester = graphene.String()
+
 
     class Arguments:
         id = graphene.Int()
