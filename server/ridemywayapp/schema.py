@@ -26,7 +26,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
         if user.is_authenticated:
             return OfferRides.objects.filter(owner=info.context.user).all()
-        
+
         return Exception('Authentication credentials were not provided')
 
     def resolve_offerrides(self, info, **kwargs):
@@ -36,7 +36,7 @@ class Query(graphene.ObjectType):
         user = info.context.user
         if user.is_authenticated:
             return RequestRides.objects.filter(owner=info.context.user).first()
-        
+
         return Exception('Authentication credentials were not provided')
 
     def resolve_requestrides(self, info, **kwargs):
@@ -55,33 +55,37 @@ class CreateOfferRides(graphene.Mutation):
         destination = graphene.String()
         available_space = graphene.Int()
 
-    def mutate(self, info, pick_up, take_off_time, destination, available_space):
-        user = info.context.user
-        if user.is_authenticated:
-            check_pick_up = OfferRides.objects.filter(
-                owner=info.context.user,
-                pick_up=pick_up).first()
-            if check_pick_up:
-                return Exception('Ride already booked')
+    def mutate(
+        self, info, pick_up,
+        take_off_time, destination,
+        available_space):
+            user = info.context.user
+            if user.is_authenticated:
+                check_pick_up = OfferRides.objects.filter(
+                    owner=info.context.user,
+                    pick_up=pick_up).first()
+                if check_pick_up:
+                    return Exception('Ride already booked')
 
-            offerride = OfferRides(
-                pick_up=pick_up,
-                take_off_time=take_off_time,
-                destination=destination,
-                available_space=available_space,
-                owner=info.context.user
-            )
+                offerride = OfferRides(
+                    pick_up=pick_up,
+                    take_off_time=take_off_time,
+                    destination=destination,
+                    available_space=available_space,
+                    owner=info.context.user
+                )
 
-            offerride.save()
+                offerride.save()
 
-            return CreateOfferRides(
-                id=offerride.id,
-                pick_up=offerride.pick_up,
-                take_off_time=offerride.take_off_time,
-                destination=offerride.destination,
-                available_space=offerride.available_space,
-            )
-        return Exception('Authentication credentials were not provided')
+                return CreateOfferRides(
+                    id=offerride.id,
+                    pick_up=offerride.pick_up,
+                    take_off_time=offerride.take_off_time,
+                    destination=offerride.destination,
+                    available_space=offerride.available_space,
+                )
+
+            return Exception('Authentication credentials were not provided')
 
 
 class CreateRequestRides(graphene.Mutation):
@@ -89,7 +93,6 @@ class CreateRequestRides(graphene.Mutation):
     offer_id = graphene.Int(required=True)
     pick_up = graphene.String()
     offer_requester = graphene.String()
-
 
     class Arguments:
         id = graphene.Int()
@@ -105,7 +108,7 @@ class CreateRequestRides(graphene.Mutation):
 
             if not check_offer:
                return Exception('Offer does not exist')
-            
+
             request_ride = RequestRides.objects.create(
                 owner=user, offerrides=check_offer)
 
@@ -117,8 +120,8 @@ class CreateRequestRides(graphene.Mutation):
             )
 
         return Exception('Authentication credentials were not provided')
-            
-            
+
+
 class Mutation(graphene.ObjectType):
     create_offerride = CreateOfferRides.Field()
     create_requestride = CreateRequestRides.Field()
