@@ -9,9 +9,20 @@ class OfferRidesType(DjangoObjectType):
         model = OfferRides
 
 
+class RequestRidesType(DjangoObjectType):
+    
+    class Meta:
+        model = RequestRides
+
+
+
+
 class Query(graphene.ObjectType):
     offerme = graphene.List(OfferRidesType)
     offerrides = graphene.List(OfferRidesType)
+
+    requestrideme = graphene.Field(RequestRidesType)
+    requestrides = graphene.List(RequestRidesType)
 
 
     def resolve_offerme(self, info):
@@ -23,6 +34,19 @@ class Query(graphene.ObjectType):
 
     def resolve_offerrides(self, info, **kwargs):
         return OfferRides.objects.all()
+
+
+    
+    def resolve_requestrideme(self, info):
+        user = info.context.user
+        if user.is_authenticated:
+            return RequestRides.objects.filter(owner=info.context.user).first()
+        
+        return Exception('Authentication credentials were not provided')
+
+    
+    def resolve_requestrides(self, info, **kwargs):
+        return RequestRides.objects.all()
 
 
 class CreateOfferRides(graphene.Mutation):
@@ -65,8 +89,44 @@ class CreateOfferRides(graphene.Mutation):
                 destination=offerride.destination,
                 available_space=offerride.available_space,
             )
-        raise Exception('Authentication credentials were not provided')
+        return Exception('Authentication credentials were not provided')
 
 
+
+class CreateRequestRides(graphene.Mutation):
+    id = graphene.Int()
+    offer_id = graphene.Int(required=True)
+    pick_up = graphene.String()
+    offer_requester = graphene.String()
+
+    class Arguments:
+        id = graphene.Int()
+        offer_id = graphene.Int(required=True)
+        pick_up = graphene.String()
+        offer_requester = graphene.String()
+
+    def mutate(self, info, offer_id):
+        user = info.context.user
+
+        if user.is_authenticated:
+            check_offer = OfferRides.objects.filter(id=offer_id).first()
+
+            if not check_offer:
+               return Exception('Offer does not exist')
+            
+            request_ride = RequestRides.objects.create(
+                owner=user, offerrides=check_offer)
+
+            return CreateRequestRides(
+                id=request_ride.id,
+                offer_id=check_offer.id,
+                pick_up=check_offer.pick_up,
+                offer_requester=request_ride.owner.username
+            )
+
+        return Exception('Authentication credentials were not provided')
+            
+            
 class Mutation(graphene.ObjectType):
     create_offerride = CreateOfferRides.Field()
+    create_requestride = CreateRequestRides.Field()
